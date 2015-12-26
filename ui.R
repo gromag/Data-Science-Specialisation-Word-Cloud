@@ -10,21 +10,26 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("Link counter"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+          textInput("pageUrl",
+                  value="http://www.google.com", label = "Page URL:"),
+          submitButton("Fetch"),
+          sliderInput("freq",
+                      "Minimum Frequency:",
+                      min = 1,  max = 50, value = 15),
+          sliderInput("max",
+                      "Maximum Number of Words:",
+                      min = 1,  max = 300,  value = 100)
     ),
 
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("distPlot")
+      h2("Stats"),
+      plotOutput("plot")
     )
   )
 ))

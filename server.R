@@ -6,18 +6,28 @@
 #
 
 library(shiny)
+require(RCurl)
+source("helper.R")
 
-shinyServer(function(input, output) {
+#options(RCurlOptions = list(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl")))
 
-  output$distPlot <- renderPlot({
+shinyServer(function(input, output, session) {
 
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
-  })
-
+        
+        
+       text <- reactive({getURL(input$pageUrl)})
+       
+       terms <- reactive({getTermMatrix(cleanFun(text()))})
+        
+       
+       
+       # Make the wordcloud drawing predictable during a session
+       wordcloud_rep <- repeatable(wordcloud)
+       
+       output$plot <- renderPlot({
+               v <- terms()
+               wordcloud_rep(names(v), v, scale=c(4,0.5),
+                             min.freq = input$freq, max.words=input$max,
+                             colors=brewer.pal(8, "YlOrRd"))
+       })
 })
