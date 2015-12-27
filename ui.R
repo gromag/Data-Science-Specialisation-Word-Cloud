@@ -35,7 +35,7 @@ shinyUI(navbarPage(
                         tabsetPanel(
                                 tabPanel("Words cloud", plotOutput("plot")), 
                                 tabPanel("Text corpus", br(), textOutput("text")),
-                                tabPanel("Table", h3("All words sorted by relevance"), dataTableOutput("commonTable"))
+                                tabPanel("Words list", h3("All words sorted by relevance"), dataTableOutput("commonTable"))
                                  
                         )
                 )
