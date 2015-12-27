@@ -26,6 +26,7 @@ stripMarkup <- function(text) {
         return(gsub("<.*?>", "", text))
 }
 
+# Removing an entire HTML node including its content, eg. <script> or <style>
 stripNodeAndContent <- function(text, tag) {
         r <- paste0("<", tag, ".+?</", tag, ">")
         return(gsub(r, "", text))
@@ -43,9 +44,11 @@ cleanMarkup <- function(text){
         stripComment(
         stripSpace(
         stripMarkup(
+        stripNodeAndContent(                
         stripNodeAndContent(
-        stripNodeAndContent(text, "script"), 
-        "style")
+        stripNodeAndContent(text, "script"),
+        "style"),
+        "head")
         )))
 }
 

@@ -1,0 +1,8 @@
+name: wordcloud
+account: gromag
+server: shinyapps.io
+bundleId: 339379
+url: https://gromag.shinyapps.io/wordcloud
+when: 1451214162.03948
+asMultiple: FALSE
+asStatic: FALSE

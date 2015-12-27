@@ -6,6 +6,7 @@
 #
 
 library(shiny)
+require(markdown)
 
 shinyUI(navbarPage(
 
@@ -14,17 +15,20 @@ shinyUI(navbarPage(
   
   tabPanel('App',
 
-  # Sidebar with a slider input for number of bins
+        # Sidebar with a slider input for number of bins
         sidebarLayout(
                 sidebarPanel(
                         textInput("pageUrl",
-                                value="", label = "Page URL:"),
+                                value="http://arstechnica.com/information-technology/2015/12/demystifying-artificial-intelligence-no-the-singularity-is-not-just-around-the-corner/", label = "Page URL:"),
                         actionButton("fetchButton", "Fetch"),
                         
-                        h3("Word Cloud settings"),
+                        h3("Further settings"),
+                        
+                        textInput("excludedWords",
+                                  value="ars, technica", label = "Excluded words (comma separated):"),
           
-                        sliderInput("freq", "Minimum Frequency:",
-                                min = 1,  max = 10, value = 2),
+                        sliderInput("freq", "Frequency Range:",
+                                min = 1,  max = 30, value = c(3,15)),
                         sliderInput("max",
                                 "Maximum Number of Words:",
                                 min = 1,  max = 300,  value = 100)
@@ -34,8 +38,8 @@ shinyUI(navbarPage(
                 mainPanel(
                         tabsetPanel(
                                 tabPanel("Words cloud", plotOutput("plot")), 
-                                tabPanel("Text corpus", br(), textOutput("text")),
-                                tabPanel("Words list", h3("All words sorted by relevance"), dataTableOutput("commonTable"))
+                                tabPanel("Words list", h3("All words sorted by relevance"), dataTableOutput("commonTable")),
+                                tabPanel("Text corpus", br(), textOutput("text"))
                                  
                         )
                 )
