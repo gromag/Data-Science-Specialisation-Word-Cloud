@@ -7,29 +7,39 @@
 
 library(shiny)
 
-shinyUI(fluidPage(
+shinyUI(navbarPage(
 
   # Application title
-  titlePanel("Link counter"),
+  title = "Website Word Analysis",
+  
+  tabPanel('App',
 
   # Sidebar with a slider input for number of bins
-  sidebarLayout(
-    sidebarPanel(
-          textInput("pageUrl",
-                  value="http://www.google.com", label = "Page URL:"),
-          submitButton("Fetch"),
-          sliderInput("freq",
-                      "Minimum Frequency:",
-                      min = 1,  max = 50, value = 15),
-          sliderInput("max",
-                      "Maximum Number of Words:",
-                      min = 1,  max = 300,  value = 100)
-    ),
+        sidebarLayout(
+                sidebarPanel(
+                        textInput("pageUrl",
+                                value="", label = "Page URL:"),
+                        actionButton("fetchButton", "Fetch"),
+                        
+                        h3("Word Cloud settings"),
+          
+                        sliderInput("freq", "Minimum Frequency:",
+                                min = 1,  max = 10, value = 2),
+                        sliderInput("max",
+                                "Maximum Number of Words:",
+                                min = 1,  max = 300,  value = 100)
+                ),
 
-    # Show a plot of the generated distribution
-    mainPanel(
-      h2("Stats"),
-      plotOutput("plot")
-    )
-  )
+                # Show a plot of the generated distribution
+                mainPanel(
+                        tabsetPanel(
+                                tabPanel("Words cloud", plotOutput("plot")), 
+                                tabPanel("Text corpus", br(), textOutput("text")),
+                                tabPanel("Table", h3("All words sorted by relevance"), dataTableOutput("commonTable"))
+                                 
+                        )
+                )
+        )
+  ),
+  tabPanel('Usage', includeMarkdown("README.md"))
 ))

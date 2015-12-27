@@ -13,21 +13,37 @@ source("helper.R")
 
 shinyServer(function(input, output, session) {
 
+        text <- reactive(getText(input$pageUrl))
         
+        terms <- reactive({
+                        getTermMatrix(text())
+        })        
         
-       text <- reactive({getURL(input$pageUrl)})
-       
-       terms <- reactive({getTermMatrix(cleanFun(text()))})
-        
-       
-       
+
        # Make the wordcloud drawing predictable during a session
-       wordcloud_rep <- repeatable(wordcloud)
-       
+        wordcloud_rep <- repeatable(wordcloud)
+    
        output$plot <- renderPlot({
-               v <- terms()
-               wordcloud_rep(names(v), v, scale=c(4,0.5),
-                             min.freq = input$freq, max.words=input$max,
-                             colors=brewer.pal(8, "YlOrRd"))
+               
+               if(input$fetchButton !=0){
+
+                       v <- isolate(terms())
+                       
+                       wordcloud_rep(names(v), v, scale=c(4,0.5),
+                                     min.freq = input$freq, max.words=input$max,
+                                     colors=brewer.pal(8, "Spectral"))
+                       
+               }
        })
+       
+       
+       output$text <- renderText({
+               
+               if(input$fetchButton != 0){
+                       isolate(text())
+               }
+        })
+       
+       output$commonTable <- renderDataTable(data.frame(terms = names(terms()), frequency = terms()))
+       
 })
