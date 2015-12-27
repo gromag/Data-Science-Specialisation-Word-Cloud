@@ -45,8 +45,9 @@ shinyServer(function(input, output, session) {
         })
        
        output$commonTable <- renderDataTable({
-               input$fetchButton 
-               isolate({data.frame(terms = names(terms()), frequency = terms())})
+               if(input$fetchButton !=0){
+                        isolate({data.frame(terms = names(terms()), frequency = terms())})
+               }
         })
        
 })
