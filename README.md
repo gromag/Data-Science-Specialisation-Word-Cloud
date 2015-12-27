@@ -14,6 +14,14 @@ Once the page is loaded you can adjust **Frequency**, exclude certain words and 
 
 In the **Text corpus** tab you can inspect the raw text that was analysed while in the **Words list** tab you can see all words and their frequency in a tabular format, filter and reorder them.
 
+### Source
+
+[https://github.com/gromag/wordcloud][source]
+
+### Licence
+
+The MIT License (MIT)
+
 ### Disclaimer
 
 This analysis was done as a course project for the 'Developing Data Products' course which is part of the [Data Science Specialisation][dss] provided by [Johns Hopkins Bloomberg School of Public Health][jhsph] via [Coursera][co].
@@ -22,4 +30,4 @@ This analysis was done as a course project for the 'Developing Data Products' co
 [dss]: https://www.coursera.org/specialization/jhudatascience/1
 [jhsph]: http://www.jhsph.edu/
 [co]: https://www.coursera.org/
-
+[source]: https://github.com/gromag/wordcloud
