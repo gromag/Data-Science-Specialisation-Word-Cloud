@@ -3,24 +3,6 @@ library(wordcloud)
 library(memoise)
 library(XML)
 
-getTermMatrix2 <- memoise(function(text) {
-        
-        myCorpus = Corpus(VectorSource(text))
-        myCorpus = tm_map(myCorpus, content_transformer(tolower))
-        myCorpus = tm_map(myCorpus, removePunctuation)
-        myCorpus = tm_map(myCorpus, removeNumbers)
-        myCorpus = tm_map(myCorpus, removeWords,
-                          c(stopwords("SMART"), "and", "but", "the"))
-        
-        myDTM = TermDocumentMatrix(myCorpus,
-                                   control = list(minWordLength = 1))
-        
-        m = as.matrix(myDTM)
-        
-        m
-})
-
-
 # Using "memoise" to automatically cache the results
 # refer to http://shiny.rstudio.com/gallery/word-cloud.html
 getTermMatrix <- memoise(function(text) {
