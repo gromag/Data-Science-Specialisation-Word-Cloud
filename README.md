@@ -16,7 +16,8 @@ In the **Text corpus** tab you can inspect the raw text that was analysed while 
 
 ### Source
 
-[https://github.com/gromag/wordcloud][source]
+Repository: [https://github.com/gromag/wordcloud][source]
+Application: [https://gromag.shinyapps.io/wordcloud][app]
 
 ### Licence
 
@@ -31,3 +32,4 @@ This analysis was done as a course project for the 'Developing Data Products' co
 [jhsph]: http://www.jhsph.edu/
 [co]: https://www.coursera.org/
 [source]: https://github.com/gromag/wordcloud
+[app]: https://gromag.shinyapps.io/wordcloud
