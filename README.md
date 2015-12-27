@@ -16,8 +16,8 @@ In the **Text corpus** tab you can inspect the raw text that was analysed while 
 
 ### Source
 
-Repository: [https://github.com/gromag/wordcloud][source]
-Application: [https://gromag.shinyapps.io/wordcloud][app]
+- Repository: [https://github.com/gromag/wordcloud][source]
+- Application: [https://gromag.shinyapps.io/wordcloud][app]
 
 ### Licence
 
