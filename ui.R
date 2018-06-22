@@ -19,7 +19,7 @@ shinyUI(navbarPage(
         sidebarLayout(
                 sidebarPanel(
                         textInput("pageUrl",
-                                value="http://arstechnica.com/information-technology/2015/12/demystifying-artificial-intelligence-no-the-singularity-is-not-just-around-the-corner/", label = "Page URL:"),
+                                value="https://arstechnica.com/information-technology/2015/12/demystifying-artificial-intelligence-no-the-singularity-is-not-just-around-the-corner/", label = "Page URL:"),
                         actionButton("fetchButton", "Fetch"),
                         
                         h3("Further settings"),
